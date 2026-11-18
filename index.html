@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en" class="antialiased">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ENDCORE INDUSTRIES</title>
+  <meta name="description" content="Endcore Industries — a foundry for websites, web apps, games, and the machines that come later." />
+  <meta name="theme-color" content="#060708" />
+  <meta name="referrer" content="no-referrer" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@500;700;800&family=Outfit:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="stylesheet" href="assets/styles.css?v=5" />
+</head>
+<body>
+  <!-- Boot sequence overlay -->
+  <div class="boot" id="boot" aria-hidden="true">
+    <div class="boot-inner">
+      <div class="boot-mark"><img src="assets/endcore-wordmark.png" alt="Endcore Industries" width="2172" height="415" draggable="false" /></div>
+      <div class="boot-lines">
+        <span id="boot-line-1">INITIALIZING FOUNDRY CORE...</span>
+        <span id="boot-line-2">LOADING BAY PROTOCOLS...</span>
+        <span id="boot-line-3">SIGNAL ONLINE</span>
+      </div>
+      <div class="boot-bar"><div class="boot-bar-fill" id="boot-fill"></div></div>
+    </div>
+  </div>
+
+  <div class="page" id="page">
+    <canvas class="foundry" aria-hidden="true" id="foundry-canvas"></canvas>
+    <div class="vignette" aria-hidden="true"></div>
+    <div class="grain" aria-hidden="true"></div>
+    <div class="scanlines" aria-hidden="true"></div>
+    <div class="scroll-bar" aria-hidden="true" id="scroll-bar"></div>
+
+    <div class="frame" aria-hidden="true">
+      <span class="frame-corner frame-tl"></span>
+      <span class="frame-corner frame-tr"></span>
+      <span class="frame-corner frame-bl"></span>
+      <span class="frame-corner frame-br"></span>
+    </div>
+
+    <!-- Custom reticle -->
+    <div class="reticle" hidden aria-hidden="true" id="reticle">
+      <div class="reticle-lag" id="reticle-lag">
+        <span class="reticle-ring"></span>
+      </div>
+      <span class="reticle-core"></span>
+      <span class="reticle-label" id="reticle-label"></span>
+    </div>
+
+    <a class="skip" href="#content">Skip to content</a>
+
+    <!-- Top nav -->
+    <header class="nav" id="nav">
+      <a href="#foundry" class="nav-mark" aria-label="Endcore Industries" data-cursor="TOP">
+        <img src="assets/endcore-wordmark.png" alt="" width="2172" height="415" draggable="false" />
+      </a>
+      <nav class="nav-links" aria-label="Sections">
+        <a href="#foundry" data-cursor="GO" data-chapter="foundry">Foundry</a>
+        <a href="#origin" data-cursor="GO" data-chapter="origin">Founder</a>
+        <a href="#build" data-cursor="GO" data-chapter="build">What I build</a>
+        <a href="#bays" data-cursor="GO" data-chapter="bays">Bays</a>
+        <a href="#drops" data-cursor="GO" data-chapter="drops">Drops</a>
+        <a href="#signal" data-cursor="GO" data-chapter="signal">Signal</a>
+        <a href="#support" data-cursor="GO" data-chapter="support">Support</a>
+        <a href="#community" data-cursor="GO" data-chapter="community">Discord</a>
+      </nav>
+      <div class="nav-status" aria-hidden="true">
+        <span class="status-dot"></span>
+        <span class="status-text" id="uptime">FOUNDRY UPTIME — 00:00:00</span>
+      </div>
+    </header>
+
+    <!-- Fixed left chapter rail (desktop only) -->
+    <aside class="rail" aria-label="Chapters" id="rail">
+      <a href="#foundry" data-cursor="GO" data-chapter="foundry"><span>00</span><em>Foundry</em></a>
+      <a href="#origin" data-cursor="GO" data-chapter="origin"><span>01</span><em>Founder</em></a>
+      <a href="#build" data-cursor="GO" data-chapter="build"><span>02</span><em>What I build</em></a>
+      <a href="#bays" data-cursor="GO" data-chapter="bays"><span>03</span><em>Bays</em></a>
+      <a href="#drops" data-cursor="GO" data-chapter="drops"><span>04</span><em>Drops</em></a>
+      <a href="#signal" data-cursor="GO" data-chapter="signal"><span>05</span><em>Signal</em></a>
+      <a href="#support" data-cursor="GO" data-chapter="support"><span>06</span><em>Support</em></a>
+      <a href="#community" data-cursor="GO" data-chapter="community"><span>07</span><em>Discord</em></a>
+    </aside>
+
+    <main id="content">
+      <!-- 00 FOUNDRY -->
+      <section class="hero section" id="foundry" data-section="foundry">
+        <div class="hero-mark parallax" data-depth="0.15">
+          <img src="assets/endcore-wordmark.png" alt="Endcore Industries" width="2172" height="415" draggable="false" />
+        </div>
+        <div class="col hero-copy parallax" data-depth="0.08">
+          <p class="kicker">Foundry file 00 · Est. 2026</p>
+          <h1 id="hero-quote">The future is built, not found.</h1>
+          <p class="deck">
+            Websites and web apps are what I build today. I’m learning game development, with
+            bigger ideas on the board for the future.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-solid" href="#build" data-cursor="GO">What I can build</a>
+            <a class="btn btn-ghost" href="#contact" data-cursor="CONTACT">Contact me</a>
+          </div>
+          <ul class="meta">
+            <li><span class="live-dot" aria-hidden="true"></span>One bay hot</li>
+            <li>Four bays cold</li>
+            <li>No capital yet</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- 01 ORIGIN -->
+      <section class="panel section" id="origin" data-section="origin">
+        <div class="col split">
+          <div class="parallax" data-depth="0.06">
+            <p class="kicker">01 — Founder</p>
+            <h2>Meet the founder.</h2>
+          </div>
+          <div class="parallax" data-depth="0.04">
+            <p>
+              Endcore Industries is a foundry for things that do not exist yet, founded by Apurba
+              Zaman. He is a student building toward a future in software, vehicles, and robotics.
+              Software can ship from a desk today; the bigger machines can come later.
+            </p>
+            <dl class="facts founder-facts">
+              <div>
+                <dt>Name</dt>
+                <dd>Apurba Zaman</dd>
+              </div>
+              <div>
+                <dt>About</dt>
+                <dd>Male · Approximately 16–17 · Student</dd>
+              </div>
+              <div>
+                <dt>Email</dt>
+                <dd class="contact-links">
+                  <a href="mailto:apurba160310@gmail.com" data-cursor="MAIL">apurba160310@gmail.com</a>
+                  <a href="mailto:apurba16mar@hotmail.com" data-cursor="MAIL">apurba16mar@hotmail.com</a>
+                </dd>
+              </div>
+            </dl>
+            <ol class="timeline">
+              <li>
+                <span class="kicker">Now</span>
+                <p>Websites and web apps are the focus today. Game development is in progress.</p>
+              </li>
+              <li>
+                <span class="kicker">On record</span>
+                <p>Every public build is logged as a drop — name, kind, and a link if it is out.</p>
+              </li>
+              <li class="is-cold">
+                <span class="kicker">Later</span>
+                <p>Real cars, then robots, when the floor can fund steel instead of only shipping code.</p>
+              </li>
+            </ol>
+          </div>
+        </div>
+      </section>
+
+      <!-- 02 BUILD -->
+      <section class="panel section" id="build" data-section="build">
+        <div class="col">
+          <p class="kicker">02 — What I can build</p>
+          <h2>Ideas made for the web.</h2>
+          <p class="lede">
+            I build websites and web apps, and I’m learning how to make games.
+          </p>
+          <div class="build-grid">
+            <article class="build-card">
+              <span class="build-index">01 / READY</span>
+              <h3>Websites</h3>
+              <p>Clear, responsive websites for people, projects, and ideas.</p>
+            </article>
+            <article class="build-card">
+              <span class="build-index">02 / READY</span>
+              <h3>Web apps</h3>
+              <p>Useful browser based tools and interactive experiences.</p>
+            </article>
+            <article class="build-card build-card-learning">
+              <span class="build-index">03 / LEARNING</span>
+              <h3>Games</h3>
+              <p>I’m learning game development and building my skills one project at a time.</p>
+            </article>
+          </div>
+          <div class="build-contact" id="contact">
+            <div>
+              <p class="kicker">Have an idea?</p>
+              <h3>Let’s talk about it.</h3>
+            </div>
+            <div class="contact-actions">
+              <a class="btn btn-solid" href="mailto:apurba160310@gmail.com" data-cursor="MAIL">Email me</a>
+              <a class="btn btn-ghost" href="mailto:apurba16mar@hotmail.com" data-cursor="MAIL">Other email</a>
+              <a class="btn btn-ghost" href="https://discord.com/invite/X5FRZ5rE" target="_blank" rel="noreferrer" data-cursor="OPEN">Find me on Discord</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 03 BAYS -->
+      <section class="panel section" id="bays" data-section="bays">
+        <div class="col">
+          <p class="kicker">03 — Bays</p>
+          <h2>Five bays. One is hot.</h2>
+          <p class="lede">
+            The industries are already named. Only the ones that can be built today are switched on.
+          </p>
+          <ol class="bay-list">
+            <li class="bay" data-hot="1">
+              <span class="bay-index">01</span>
+              <div>
+                <h3>Web</h3>
+                <p>Sites and web apps. Pages, tools, and systems that ship in a browser.</p>
+              </div>
+              <span class="bay-state"><span class="bay-light"></span>Hot</span>
+            </li>
+            <li class="bay" data-hot="0">
+              <span class="bay-index">02</span>
+              <div>
+                <h3>Applications</h3>
+                <p>Software you keep. Desktop and mobile tools, logged when they leave the bench.</p>
+              </div>
+              <span class="bay-state"><span class="bay-light"></span>Cold</span>
+            </li>
+            <li class="bay" data-hot="0">
+              <span class="bay-index">03</span>
+              <div>
+                <h3>Games</h3>
+                <p>Playable builds. Every public game gets a drop on this floor.</p>
+              </div>
+              <span class="bay-state"><span class="bay-light"></span>Cold</span>
+            </li>
+            <li class="bay" data-hot="0">
+              <span class="bay-index">04</span>
+              <div>
+                <h3>Vehicles</h3>
+                <p>Real cars. On the board. Metal waits until the foundry can pay for it.</p>
+              </div>
+              <span class="bay-state"><span class="bay-light"></span>Cold</span>
+            </li>
+            <li class="bay" data-hot="0">
+              <span class="bay-index">05</span>
+              <div>
+                <h3>Frames</h3>
+                <p>Robots. Joints, shells, and motion. Drawn now. Built when the floor is ready.</p>
+              </div>
+              <span class="bay-state"><span class="bay-light"></span>Cold</span>
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <!-- Breather -->
+      <section class="breather section" id="assembly" aria-label="Assembly">
+        <div class="col">
+          <p class="kicker">Scroll opens the core</p>
+          <p class="breather-line">
+            <span>Software now.</span>
+            <span>Metal later.</span>
+          </p>
+        </div>
+      </section>
+
+      <!-- 04 DROPS -->
+      <section class="panel section" id="drops" data-section="drops">
+        <div class="col">
+          <p class="kicker">04 — Drops</p>
+          <h2>The public record.</h2>
+          <p class="lede">
+            Browse public projects from Endcore. This is a read-only list; new entries are added
+            when a build is ready to share.
+          </p>
+
+          <div class="bench">
+            <div class="ledger">
+              <div class="ledger-head">
+                <div class="lanes" role="group" aria-label="Filter drops">
+                  <button type="button" class="lane" data-cursor="FILTER" data-lane="all" aria-pressed="true">All</button>
+                  <button type="button" class="lane" data-cursor="FILTER" data-lane="application" aria-pressed="false">Applications</button>
+                  <button type="button" class="lane" data-cursor="FILTER" data-lane="game" aria-pressed="false">Games</button>
+                </div>
+              </div>
+
+              <!-- Sci-fi empty state -->
+              <div class="empty-ledger" id="empty-ledger">
+                <div class="empty-schematic" aria-hidden="true">
+                  <div class="schematic-grid"></div>
+                  <div class="schematic-core"></div>
+                  <div class="schematic-ring"></div>
+                </div>
+                <p class="empty-title">NO PUBLIC DROPS LOGGED</p>
+                <p class="quiet">New entries will appear here when builds are ready to share.</p>
+                <p class="empty-code">EC // AWAITING FIRST DROP</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 05 SIGNAL -->
+      <section class="panel signal section" id="signal" data-section="signal">
+        <div class="col signal-grid">
+          <div>
+            <p class="kicker">05 — Signal</p>
+            <h2>The floor is open.</h2>
+            <p class="deck">
+              I build websites and web apps, and I’m learning game development. Have a project in
+              mind? Get in touch and tell me about it.
+            </p>
+            <div class="hero-actions">
+              <a class="btn btn-solid" href="#contact" data-cursor="CONTACT">Contact me</a>
+              <a class="btn btn-ghost" href="https://discord.com/invite/X5FRZ5rE" target="_blank" rel="noreferrer" data-cursor="OPEN">Discord</a>
+            </div>
+          </div>
+          <dl class="facts">
+            <div>
+              <dt>Capital</dt>
+              <dd>None yet. The desk ships first.</dd>
+            </div>
+            <div>
+              <dt>Output</dt>
+              <dd>Websites and web apps. Learning game development.</dd>
+            </div>
+            <div>
+              <dt>On the board</dt>
+              <dd>Real cars. Then robots.</dd>
+            </div>
+            <div>
+              <dt>Founded</dt>
+              <dd>2026. Still in school. Already building.</dd>
+            </div>
+          </dl>
+        </div>
+      </section>
+
+      <!-- 06 SUPPORT -->
+      <section class="panel section" id="support" data-section="support">
+        <div class="col split">
+          <div>
+            <p class="kicker">06 — Support</p>
+            <h2>Help keep the foundry moving.</h2>
+          </div>
+          <div class="support-copy">
+            <p>
+              If you would like to support the work, donations from Bangladesh are accepted via
+              bKash only.
+            </p>
+            <dl class="facts">
+              <div>
+                <dt>bKash number</dt>
+                <dd class="donation-number">01978957600</dd>
+              </div>
+            </dl>
+            <p class="quiet">Please confirm the recipient name in bKash before sending.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 07 COMMUNITY -->
+      <section class="panel section" id="community" data-section="community">
+        <div class="col community-layout">
+          <div class="community-copy">
+            <p class="kicker">07 — Community</p>
+            <h2>Join the floor.</h2>
+            <p class="lede">
+              Meet the builders, see what is in progress, and share what you are making in the
+              Endcore Industries Discord.
+            </p>
+            <div class="community-stamp" aria-label="Public Discord community">
+              <span class="community-stamp-mark" aria-hidden="true">EC</span>
+              <span><strong>Open community</strong><small>Ideas · builds · people</small></span>
+              <span class="community-stamp-code">EC / 07</span>
+            </div>
+          </div>
+          <div class="community-widget-wrap">
+            <div class="community-widget-heading">
+              <span class="live-dot" aria-hidden="true"></span>
+              Live server widget
+            </div>
+            <iframe
+              class="community-widget"
+              src="https://discord.com/widget?id=1572088867383676949&theme=dark"
+              title="Endcore Industries Discord server"
+              width="350"
+              height="500"
+              sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"
+              loading="lazy"
+            ></iframe>
+          </div>
+        </div>
+      </section>
+
+      <footer class="footer">
+        <div class="col footer-row">
+          <img src="assets/endcore-wordmark.png" alt="" width="2172" height="415" draggable="false" />
+          <p>Endcore Industries · Software now · Machines later</p>
+        </div>
+      </footer>
+    </main>
+  </div>
+
+  <div class="ticker" aria-hidden="true">
+    <div class="ticker-track">
+      <span>ENDCORE INDUSTRIES // SOFTWARE NOW — METAL LATER // BAY 01 WEB: ONLINE // BAY 02–05: COLD // DROPS LOGGED: 000 // SIGNAL: OPEN // EST. 2026 // STILL IN SCHOOL, ALREADY BUILDING //&nbsp;</span>
+      <span>ENDCORE INDUSTRIES // SOFTWARE NOW — METAL LATER // BAY 01 WEB: ONLINE // BAY 02–05: COLD // DROPS LOGGED: 000 // SIGNAL: OPEN // EST. 2026 // STILL IN SCHOOL, ALREADY BUILDING //&nbsp;</span>
+    </div>
+  </div>
+
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.187.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.187.0/examples/jsm/"
+    }
+  }
+  </script>
+  <script type="module" src="js/main.js?v=9"></script>
+</body>
+</html>
