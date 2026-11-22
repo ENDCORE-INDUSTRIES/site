@@ -475,6 +475,11 @@ html.ec-fine.ec-ibeam .reticle { opacity: 0; }
   color: var(--color-ash); font-size: 0.82rem; letter-spacing: 0.1em; text-transform: uppercase;
 }
 
+.copyright {
+  margin: 1.5rem 0 0; color: var(--color-ash); font-size: 0.78rem; letter-spacing: 0.04em;
+  text-align: center; opacity: 0.8;
+}
+
 main { position: relative; z-index: 2; }
 .parallax { will-change: transform; }
 
